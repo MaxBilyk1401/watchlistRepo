@@ -1,6 +1,6 @@
 export type WatchlistStatus = 'active' | 'inactive' | 'done'
 
-export interface WatchlistItem { 
+export interface WatchlistItem {
     id: string
     title: string
     status: WatchlistStatus
