@@ -1,20 +1,27 @@
-import { randomUUID } from 'node:crypto';
+import { WatchlistModel } from './watchlist.model'
 import type { CreateWatchlistDto, WatchlistItem } from './watchlist.types';
 
 export class WatchlistService {
-    private items: WatchlistItem[] = []
-
-    create(dto: CreateWatchlistDto): WatchlistItem {
-        const item: WatchlistItem = { 
-            id: randomUUID(),
-            ...dto,
-            createdAt: new Date(),
-        }
-        this.items.push(item)
-        return item
+    create(dto: CreateWatchlistDto) {
+        return WatchlistModel.create(dto)
     }
 
-    findAll(): WatchlistItem[] {
-        return this.items
+    findAll() {
+        return WatchlistModel.find().sort({ createdAt: -1 })
+    }
+
+    findById(id: string) {
+        return WatchlistModel.findById(id)
+    }
+
+    update(id: string, dto: Partial<CreateWatchlistDto>) {
+        return WatchlistModel.findByIdAndUpdate(id, dto, {
+            new: true,
+            runValidators: true,
+        })
+    }
+
+    delete(id: string) {
+        return WatchlistModel.findByIdAndDelete(id)
     }
 }
