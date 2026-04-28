@@ -9,6 +9,7 @@ export function Header() {
                 </Link>
                 <nav className="flex gap-6 text-sm text-gray-700">
                     <Link href="/" className="hover:text-black">Home</Link>
+                    <Link href="/trending" className="hover:text-black">Trending</Link>
                     <Link href="/watchlist" className="hover:text-black">My list</Link>
                 </nav>
             </div>
